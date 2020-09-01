@@ -18,5 +18,6 @@ My intention was to develop a system that would allow me to monitor, over time, 
 
 ### POPULAR AREAS FOR PROPERTIES LISTINGS
 <img width="992" alt="Properties listings locations" src="https://user-images.githubusercontent.com/70529856/91867997-29cac880-ec6c-11ea-9c58-da078c0e3453.png">
+
 ![Estate Agents Asking Price](https://user-images.githubusercontent.com/70529856/91870111-8c24c880-ec6e-11ea-9909-a3f829d3a1bf.png)
 ![Estate Agents OverUnder](https://user-images.githubusercontent.com/70529856/91870113-8dee8c00-ec6e-11ea-844d-714c1f082bff.png)
