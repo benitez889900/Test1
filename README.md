@@ -7,12 +7,16 @@ My intention was to develop a system that would allow me to monitor, over time, 
 </dl>
 
 1. What is the average asking price range by postcode sector (this is to the EHXY Z## level of detail)
-2. For each of those sectors, how much over or under the asking price, in average, are properties finally sold for.
+2. How much over or under the asking price, in average, are properties sold for on each sector.
 1. Which are the most/less popular areas of Edinburgh where properties are being listed for sale.
-2. What are the usual range of different Estate Agents listings? Is there a difference?
+2. What are the usual range of different Estate Agents listings? Is there a difference - for instance some agents specialising in cheaper/more expensive properties?
+2. What are the sold prices achieve, in average, by different Estate Agent? Would it be expected a difference if a property is listed with different Agents?
+
 
 <img width="1302" alt="Properties asking prices" src="https://user-images.githubusercontent.com/70529856/91867653-cb054f00-ec6b-11ea-8f05-0fca4b08db83.png">
 <img width="1141" alt="Properties sold prices over-under" src="https://user-images.githubusercontent.com/70529856/91868229-6dbdcd80-ec6c-11ea-9277-32a07e09cb62.png">
+
+### POPULAR AREAS FOR PROPERTIES LISTINGS
 <img width="992" alt="Properties listings locations" src="https://user-images.githubusercontent.com/70529856/91867997-29cac880-ec6c-11ea-9c58-da078c0e3453.png">
 ![Estate Agents Asking Price](https://user-images.githubusercontent.com/70529856/91870111-8c24c880-ec6e-11ea-9909-a3f829d3a1bf.png)
 ![Estate Agents OverUnder](https://user-images.githubusercontent.com/70529856/91870113-8dee8c00-ec6e-11ea-844d-714c1f082bff.png)
