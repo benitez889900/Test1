@@ -11,4 +11,13 @@ My intention was to develop a system that would allow me to monitor, over time, 
 1. Which are the most/less popular areas of Edinburgh where properties are being listed for sale.
 2. What are the usual range of different Estate Agents listings? Is there a difference?
 
-![Asking Prices](https://user-images.githubusercontent.com/70529856/91843479-b3b76900-ec4d-11ea-8053-daffc1548cc5.JPG)
+## Asking Prices
+<img width="1302" alt="Properties asking prices" src="https://user-images.githubusercontent.com/70529856/91864967-c8edc100-ec68-11ea-92a7-ae4a64108afd.png">
+## Asking Prices
+<img width="992" alt="Properties listings locations" src="https://user-images.githubusercontent.com/70529856/91865032-da36cd80-ec68-11ea-9fe2-a9c1c361f98a.png">
+## Asking Prices
+<img width="1141" alt="Properties sold prices over-under" src="https://user-images.githubusercontent.com/70529856/91865048-de62eb00-ec68-11ea-8442-1efc17aa0f9f.png">
+## Asking Prices
+![Estate Agents - Asking Price](https://user-images.githubusercontent.com/70529856/91864951-c68b6700-ec68-11ea-8cf8-757a34fa6215.png)
+## Asking Prices
+![Estate Agents - OverUnder](https://user-images.githubusercontent.com/70529856/91864958-c8552a80-ec68-11ea-9044-954e8b166b4d.png)
