@@ -30,19 +30,17 @@ I have been collecting data for over 8 months - approximately 1K entries. Even t
 
 ## PROBLEM STATEMENT 
 
-A year and a half ago I embarked with my wife in the challenging task of buying our first property. We live in Edinburgh, Scotland, where the market has been strong for the last few years and securing a new property is challenging. So, as well as being an exciting time, it can also become quite stressful and frustrating.
-
-Like in many other places, the process for purchasing a new house works in a way that houses are advertised for a certain price (Asking Price), which is usually around the value set up in the Home Report (HR value) which is a mandatory document for any property being sold and establishes the condition of the property along with an estimation of the current market value. With this in mind, people are free to bid whatever they wish to secure the place. Usually the highest bidder is the one that ends up securing the place, defining the Sold Price for the property. 
+Like in many other places, the process for purchasing a new house works in a way that houses are advertised for a certain price (Asking Price), which is usually around the value set up in the Home Report (HR value), which provides an estimate for the market value of the property. With this in mind, people are free to bid whatever they wish to secure the place. Usually the highest bidder is the one that ends up securing the place, defining the Sold Price for the property. 
 
 Therefore, after attending a viewing for a property that we liked and reviewing its HR, it always arose the question: how much should (and can) we offer for this place in order to secure it?
 
-This was not straightforward because, in order to find the right answer, I would need to have information on previous Asking Prices for properties nearby, and the Sold Price achieved by them. That would give us information on similar properties in terms of size and location that we could extrapolate to ours. However, this information was not easy to get since those two prices would not be available at the same time. The Asking Price is available while the property is still up for sale, whereas the Sold Price is shown only after all the legal procedures are finalised and this is at least 3 to 4 months after the sale takes place when the Asking Price has long been removed. Also, the differences between Asking Prices and Sold Prices vary considerably between different areas of the city - but this was not known to us.
+This was not straightforward because, in order to find the right answer, I would need to have information on previous Asking Prices for properties nearby, and the Sold Price achieved by them. That would give us information on similar properties in terms of size and location that we could extrapolate to ours. However, this information was not easy to get since those two prices would not be available at the same time. The Asking Price is available while the property is still up for sale, whereas the Sold Price is shown only after all the legal procedures are finalised and this is at least 3 to 4 months after the sale takes place when the Asking Price has long been removed. Also, the differences between Asking Prices and Sold Prices vary considerably between different areas of the city - but this information is not available to the buyer.
 
-In addition, information about Estate Agents has been gathered as well. I find this insight particularly useful when it comes to sell a property, as with time, it might start giving an indication on which Estate Agent is stronger for a given price range, or even a particular area. And whether there is a difference in the final sold price of the property.
+In addition, information about Estate Agents has also been gathered. I find this insight particularly useful when it comes to sell a property, as with time, it might start giving an indication on which Estate Agent is stronger for a given price range, or even a particular area. And whether there is a difference in the final sold price of the property.
 
 ## SOLUTION FUNCTIONALITY
 
-When developing the solution for this project, I first tried to find out whether there would be an API that I could connect to in order to get the properties in an orderly manner. However, at the time of research, early 2019, I couldn't I couldn't find a working/maintained one. Therefore I use the libraries 'Requests' and 'Beautifulsoup' together with a lot of data cleaning to gather the data as properties would become available to the market. Then, I would try to match them with their Sold Price once this information becames available - usually a couple months after the sale has been finalise. 
+When developing the solution for this project, I first tried to find out whether there would be an API that I could connect to in order to get the data in an orderly manner. However, at the time of research, early 2019, I couldn't find a working/maintained one. Therefore I used the libraries 'Requests' and 'Beautifulsoup' together with a lot of data cleaning to gather the data as properties would become available to the market. Then, I would try to match them with their Sold Price once this information becames available - usually a couple months after the sale has been finalise. 
 
 In order to run the scripts daily and weekly an online server to host and run python code on the cloud has been used (PythonAnywhere), allowing to pre-schedule the frequency with which the code should run. All the results are stored in a .csv file from which visualizations can be pulled at anytime. The Figure below shows this working arragement:
 
@@ -58,10 +56,37 @@ The information recorded for each property would include:
 1. The date when the property was posted
 1. The number of beds 
 1. The asking price 
-1. The State Agent that carrying out the sale 
+1. The Estate Agent that carrying out the sale 
 
 <p align="center">
+  ZOOPLA LISTING (BOTTOM) AND DATAFRAME OUTPUT (TOP)
 <img width="700" alt="ListingScraper example" src="https://user-images.githubusercontent.com/70529856/91957236-aa85d500-ecfd-11ea-8a37-26165d1157ef.png">
 </p>
 
-From this information two additional features are created: the first one is the coordinates of the property (LAT and LON) using Google's API and based on the address obtained. This is used later to create the visualizations. The second one is a new column called 'Address input' which is used by the 'SoldPriceScraper' to search on Zoopla for sold prices at a later date.
+From this information two additional features are created: 
+1. The first one is the coordinates of the property (LAT and LON) using Google's API and based on the address obtained. This is used later to create the visualizations. 
+1. The second one is a new column called 'Address input' which is used by the 'SoldPriceScraper' to search on Zoopla for sold prices at a later date.
+
+#### SoldPricesScraper
+
+The sold price scraper uses the 'Address Input' column to run a query on the server and search for sold properties under that same address. This returns a list of properties, however since the 'Address Input' uses the same naming as Zoopla for the address, if the sold price is available, it will be the first one on the list. 
+
+There were, however, some instances in which this method gave problems, for instance those occasions where the property might not have been sold, or removed from sale. In this case the Scraper would pick the next property list, which led to wrong matching. To correct this, two measures were introduced:
+
+1. Check that the sold price and asking didn't diverge by more than 50% (which would not be realistic)
+1. Check that differences between the listing date published and the sold date was not higher than 6 months (higher end of the timescales for other properties)
+
+The SoldPricesScraper runs once a week and iterates through all the entries in the .csv which do not have an allocated 'Sold Price'
+
+#### EdinburghFinal.csv
+
+All the information gathered from the scrapers above is stored in a cloud service on a .csv file. The final output produced by those two scrapers is like the figure below
+
+<p align="center">
+  EXTRACT OF .CSV PRODUCED BY THE TWO SCRAPERS
+<img width="1289" alt="Final csv" src="https://user-images.githubusercontent.com/70529856/91992992-bf2d9180-ed2c-11ea-8bfd-87b5ea9c53e8.png">
+</p>
+
+
+
+
