@@ -16,7 +16,7 @@ I have been collecting data for over 8 months - approximately 1K entries. Even t
 2. How much over or under the asking price, in average, are properties sold for on each sector.
 1. Which are the most/less popular areas of Edinburgh where properties are being listed for sale.
 2. What are the usual range of different Estate Agents listings? Is there a difference - for instance some agents specialising in cheaper/more expensive properties?
-2. What are the sold prices achieve, in average, by different Estate Agent? Would it be expected a difference if a property is listed with different Agents?
+2. What are the sold prices achieved, in average, by different Estate Agent? Would it be expected a difference if a property is listed with different Agents?
 
 
 <img width="1302" alt="Properties asking prices" src="https://user-images.githubusercontent.com/70529856/91867653-cb054f00-ec6b-11ea-8f05-0fca4b08db83.png">
@@ -38,19 +38,30 @@ Therefore, after attending a viewing for a property that we liked and reviewing 
 
 This was not straightforward because, in order to find the right answer, I would need to have information on previous Asking Prices for properties nearby, and the Sold Price achieved by them. That would give us information on similar properties in terms of size and location that we could extrapolate to ours. However, this information was not easy to get since those two prices would not be available at the same time. The Asking Price is available while the property is still up for sale, whereas the Sold Price is shown only after all the legal procedures are finalised and this is at least 3 to 4 months after the sale takes place when the Asking Price has long been removed. Also, the differences between Asking Prices and Sold Prices vary considerably between different areas of the city - but this was not known to us.
 
+In addition, information about Estate Agents has been gathered as well. I find this insight particularly useful when it comes to sell a property, as with time, it might start giving an indication on which Estate Agent is stronger for a given price range, or even a particular area. And whether there is a difference in the final sold price of the property.
+
 ## SOLUTION FUNCTIONALITY
 
-In order to provide insight I developed a web scraper that would store the properties as they would become available to the market and try to match them with their Sold Price once this information became available as well - usually a couple months after the sale has been finalise. All the results are stored in a .csv file from which visualizations can be pulled at anytime. The Figure below shows this working arragement:
+When developing the solution for this project, I first tried to find out whether there would be an API that I could connect to in order to get the properties in an orderly manner. However, at the time of research, early 2019, I couldn't I couldn't find a working/maintained one. Therefore I use the libraries 'Requests' and 'Beautifulsoup' together with a lot of data cleaning to gather the data as properties would become available to the market. Then, I would try to match them with their Sold Price once this information becames available - usually a couple months after the sale has been finalise. 
+
+In order to run the scripts daily and weekly an online server to host and run python code on the cloud has been used (PythonAnywhere), allowing to pre-schedule the frequency with which the code should run. All the results are stored in a .csv file from which visualizations can be pulled at anytime. The Figure below shows this working arragement:
 
 <p align="center">
 <img width="675" alt="Functionality" src="https://user-images.githubusercontent.com/70529856/91943681-e2d4e580-ecf4-11ea-89c2-98142e764294.png">
 </p>
 
-#### ListintScraper
+The functionality of both the ListingScraper and SoldPriceScraper is similar and it is outlined below.
 
-In the information recorded for each property would be included:
-1. What the date of the property being posted, 
-1. The number of beds, 
-1. The asking price and also 
+#### ListingScraper
+
+The information recorded for each property would include:
+1. The date when the property was posted
+1. The number of beds 
+1. The asking price 
 1. The State Agent that carrying out the sale 
 
+<p align="center">
+<img width="700" alt="ListingScraper example" src="https://user-images.githubusercontent.com/70529856/91957236-aa85d500-ecfd-11ea-8a37-26165d1157ef.png">
+</p>
+
+From this information two additional features are created: the first one is the coordinates of the property (LAT and LON) using Google's API and based on the address obtained. This is used later to create the visualizations. The second one is a new column called 'Address input' which is used by the 'SoldPriceScraper' to search on Zoopla for sold prices at a later date.
